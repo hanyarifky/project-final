@@ -21,7 +21,7 @@ class PendudukController extends Controller
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
         return view('penduduk.index', [
-            'penduduks' => Penduduk::all()
+            'penduduks' => Penduduk::with(['kartuKeluarga'])->get()
         ]);
     }
 
@@ -44,6 +44,7 @@ class PendudukController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validate = $request->validate(
             [
                 'nama' => "required|string",
@@ -55,9 +56,12 @@ class PendudukController extends Controller
                 'agama' => 'required|string',
                 'status_perkawinan' => 'required|in:kawin,belum kawin',
                 'pekerjaan' => 'required|string',
+                'status_di_keluarga' => 'nullable|in:ayah,ibu,anak',
+                'kartu_keluarga_id' => 'nullable|exists:kartu_keluargas,id'
             ]
         );
         // dd($request->all());
+
 
         try {
             Penduduk::create($validate);
@@ -144,7 +148,7 @@ class PendudukController extends Controller
      */
     public function destroy(Penduduk $penduduk)
     {
-        alert()->success('Title', 'Lorem Lorem Lorem');
+        alert()->success('Berhasil di Hapus', 'Data Penduduk Berhasil di Hapus');
         Penduduk::destroy($penduduk->id);
 
 

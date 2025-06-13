@@ -43,14 +43,6 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
 
-    <script>
-        if (document.getElementById("search-table") && typeof simpleDatatables.DataTable !== 'undefined') {
-            const dataTable = new simpleDatatables.DataTable("#search-table", {
-                searchable: true,
-                sortable: false
-            });
-        }
-    </script>
     {{-- Dark Mode JS --}}
     <script>
         

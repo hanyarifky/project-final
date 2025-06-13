@@ -14,7 +14,7 @@ class PendudukFactory extends Factory
     {
         return [
             'nama' => $this->faker->firstName . ' ' . $this->faker->lastName(),
-            'nik' => $this->faker->numerify('##########'),  // NIK Indonesia memiliki 16 digit, bisa dikustomisasi
+            'nik' => '36' . $this->faker->numerify('##############'), // NIK diawali dengan 36 dan diikuti 10 digit acak
             'jenis_kelamin' => $this->faker->randomElement(['laki-laki', 'perempuan']),
             'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),
@@ -32,6 +32,7 @@ class PendudukFactory extends Factory
                 'Dokter',
                 'Buruh'
             ]),
+
         ];
     }
 }

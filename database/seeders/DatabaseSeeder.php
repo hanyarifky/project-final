@@ -28,10 +28,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Penduduk::factory(2)->create();
+        // Penduduk::factory(10)->create();
         // Penduduk::create([
         //     nik
         // ]);
-        KartuKeluarga::factory(2)->create();
+        // KartuKeluarga::factory(2)->create();
     }
 }

@@ -10,6 +10,8 @@ class KartuKeluarga extends Model
     /** @use HasFactory<\Database\Factories\KartuKeluargaFactory> */
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     // Relasi ke Table Penduduk
     public function penduduks()
     {

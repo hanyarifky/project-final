@@ -14,4 +14,9 @@ class Penduduk extends Model
     {
         return $this->belongsTo(KartuKeluarga::class, 'kartu_keluarga_id');
     }
+
+    public function kelahiran()
+    {
+        return $this->hasOne(Kelahiran::class);
+    }
 }

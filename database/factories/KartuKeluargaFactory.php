@@ -20,7 +20,7 @@ class KartuKeluargaFactory extends Factory
     public function definition()
     {
         return [
-            'nomor_kartu_keluarga' => $this->faker->unique()->numerify('###-###-###'),
+            'nomor_kartu_keluarga' => '36' . $this->faker->numerify('##############'), // NIK diawali dengan 36 dan diikuti 10 digit acak
             'nama_kepala_keluarga' => $this->faker->firstName . ' ' . $this->faker->lastName(),
             'rt' => $this->faker->randomElement(['001', '002', '003']),
             'rw' => $this->faker->randomElement(['001', '002', '003']),
