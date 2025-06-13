@@ -154,27 +154,39 @@
                     "
                     placeholder="" required />
             </div>
-            <div>
-                <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Berat bayi (dalam kg)
-                </label>
-                <input name="berat_bayi" type="number" id="visitors" value="{{ old('berat_bayi') }}" step="any"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+              <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <!-- Berat Bayi -->
+                <div>
+                    <label for="berat_bayi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Berat
+                        Bayi (dalam kg)</label>
+                    <input name="berat_bayi" type="number" id="berat_bayi"
+                        value="{{ old('berat_bayi', ) }}" step="0.01"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
                     @error('berat_bayi') 
-                                bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500
+                        bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500
+                    @enderror"
+                        placeholder="contoh: 3.5" required />
+                    @error('berat_bayi')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                     @enderror
-                    "
-                    placeholder="" required />
-            </div>
-            <div>
-                <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Panjang bayi (dalam cm)
-                </label>
-                <input name="panjang_bayi" type="number" id="visitors" value="{{ old('panjang_bayi') }}" step="any"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+                </div>
+
+                <!-- Panjang Bayi -->
+                <div>
+                    <label for="panjang_bayi"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Panjang Bayi (dalam
+                        cm)</label>
+                    <input name="panjang_bayi" type="number" id="panjang_bayi"
+                        value="{{ old('panjang_bayi') }}" step="0.01"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
                     @error('panjang_bayi') 
-                                bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500
+                        bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500
+                    @enderror"
+                        placeholder="contoh: 50" required />
+                    @error('panjang_bayi')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                     @enderror
-                    "
-                    placeholder="" required />
+                </div>
             </div>
             <div>
                 <label for="kartu_keluarga_id"

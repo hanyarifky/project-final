@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\KartuKeluargaController;
-use App\Http\Controllers\KelahiranController;
 use App\Models\Penduduk;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PendudukController;
 use App\Models\Kelahiran;
 use App\Policies\KartuKeluargaPolicy;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\KematianController;
+use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\KelahiranController;
+use App\Http\Controllers\KartuKeluargaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +31,9 @@ Route::delete('/kartu-keluarga/penduduk/{penduduk}', [KartuKeluargaController::c
 
 // Data Kelahiran
 Route::resource('/kelahiran', KelahiranController::class)->middleware('auth');
+
+// Data Kematian
+Route::resource('/kematian', KematianController::class)->middleware('auth');
 
 // Data Perpindahan
 Route::get('/perpindahan', function () {

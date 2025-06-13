@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('penduduk_id')->constrained()->onDelete('cascade');
             $table->enum("jenis_kelahiran", ['tunggal', 'kembar 2', 'kembar 3', 'lainnya']);
             $table->string('anak_ke');
-            $table->string('berat_bayi');
-            $table->string('panjang_bayi');
+            $table->decimal('berat_bayi', 8, 2);
+            $table->decimal('panjang_bayi', 8, 2);
             $table->timestamps();
         });
     }

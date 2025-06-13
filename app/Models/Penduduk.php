@@ -19,4 +19,9 @@ class Penduduk extends Model
     {
         return $this->hasOne(Kelahiran::class);
     }
+    
+    public function kematian()
+    {
+        return $this->hasOne(Kematian::class);
+    }
 }

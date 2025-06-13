@@ -7,6 +7,7 @@
         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
         {{ $slot }}
     </svg>
+    
 
     <span class="flex-1 ms-3 whitespace-nowrap">{{ $attributes->get('text') }}</span>
 </a>
