@@ -16,30 +16,26 @@
         <div class="container grid gap-6  md:grid-cols-2">
             
             <div class="border border-b-slate-400 border-b-3 p-2">
-                <p class="text-sm underline font-medium text-gray-900 dark:text-white">Nama
-                    Lengkap</p>
-                <p class="dark:text-white">{{ $kematian->penduduk->nama }}</p>
+                <p class="text-sm underline font-medium text-gray-900 dark:text-white">Nama</p>
+                <p class="dark:text-white">{{ Auth::user()->nama }}</p>
             </div>
             <div class="border border-b-3 p-2">
-                <p class="text-sm underline font-medium text-gray-900 dark:text-white">NIK</p>
-                <p class="dark:text-white">{{ $kematian->penduduk->nik }}</p>
+                <p class="text-sm underline font-medium text-gray-900 dark:text-white">E-mail</p>
+                <p class="dark:text-white">{{ Auth::user()->email }}</p>
             </div>
             <div class="border border-b-3 p-2">
-                <p class="text-sm underline font-medium text-gray-900 dark:text-white">Jenis Kelamin</p>
-                <p class="dark:text-white">{{ ucfirst($kematian->penduduk->jenis_kelamin) }}</p>
+                <p class="text-sm underline font-medium text-gray-900 dark:text-white">Username</p>
+                <p class="dark:text-white">{{ Auth::user()->username }}</p>
             </div>
             <div class="border border-b-3 p-2">
-                <p class="text-sm underline font-medium text-gray-900 dark:text-white">Tempat Tanggal Lahir</p>
-                <p class="dark:text-white">{{ $kematian->penduduk->tempat_lahir }}, {{ \Carbon\Carbon::parse($kematian->penduduk->tanggal_lahir)->format('d-m-Y') }}</p>
+                <p class="text-sm underline font-medium text-gray-900 dark:text-white">Nomor Telepon</p>
+                <p class="dark:text-white">{{ Auth::user()->nomor_telepon }}</p>
             </div>
-            <div class="border border-b-3 p-2">
-                <p class="text-sm underline font-medium text-gray-900 dark:text-white">Tanggal Kematian</p>
-                <p class="dark:text-white">{{ $kematian->tanggal_kematian }}</p>
-            </div>
-            <div class="border border-b-3 p-2">
-                <p class="text-sm underline font-medium text-gray-900 dark:text-white">Umur</p>
-                <p class="dark:text-white">{{ $kematian->umur }}</p>
-            </div>
+            {{-- <div class="border border-b-3 p-2">
+                <p class="text-sm underline font-medium text-gray-900 dark:text-white">Password</p>
+                <p class="dark:text-white">{{ bcrypt(Auth::user()->password) }}</p>
+            </div> --}}
+            
             
 
 
@@ -47,9 +43,9 @@
 
         <div class="container py-8">
             <a href="javascript:void(0);" onclick="window.history.back();" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">Kembali</a>
-            <a href="/kematian/{{ $kematian->penduduk->id }}/konfirmasi-kematian"
+            {{-- <a href="/"
                 class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-                data-confirm-delete="true">Konfirmasi Kematian</a>
+                data-confirm-delete="true">Konfirmasi Kematian</a> --}}
         </div>
         
     </div>

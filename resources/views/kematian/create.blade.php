@@ -65,6 +65,38 @@
                         required />
                 </div>
             </div>
+
+            {{-- Sebab Kematian --}}
+            <div>
+                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sebab Kematian</label>
+                <select name="sebab_kematian" id="countries" required
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+                    @error('sebab_kematian') 
+                                bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500
+                    @enderror
+                    ">
+                    <option selected>--Pilih--</option>
+                    <option value="sakit biasa/tua" {{ old('sebab_kematian') == 'sakit biasa/tua' ? 'selected' : '' }}>Sakit biasa/Tua</option>
+                    <option value="wabah penyakit" {{ old('sebab_kematian') == 'wabah penyakit' ? 'selected' : '' }}>Wabah Penyakit</option>
+                    <option value="kecelakaan" {{ old('sebab_kematian') == 'kecelakaan' ? 'selected' : '' }}>Kecelakaan</option>
+                    <option value="kriminalitas" {{ old('sebab_kematian') == 'kriminalitas' ? 'selected' : '' }}>Kriminalitas</option>
+                    <option value="bunuh diri" {{ old('sebab_kematian') == 'bunuh diri' ? 'selected' : '' }}>Bunuh diri</option>
+                    <option value="lainnya" {{ old('sebab_kematian') == 'lainnya' ? 'selected' : '' }}>Lainnya</option>
+                </select>
+            </div>
+
+            {{-- Tempat Kematian --}}
+            <div>
+                <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tempat Kematian
+                </label>
+                <input name="tempat_kematian" type="text" id="visitors" value="{{ old('tempat_kematian') }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+                    @error('tempat_kematian') 
+                                bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500
+                    @enderror
+                    "
+                    placeholder="" required />
+            </div>
         </div>
 
         <button type="submit"

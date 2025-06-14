@@ -24,6 +24,7 @@ return new class extends Migration
             $table->enum('status_perkawinan', ['belum kawin', 'kawin']);
             $table->enum('status_di_keluarga', ['ayah', 'ibu', 'anak'])->nullable();
             $table->string('pekerjaan');
+            $table->enum('status', ['aktif', 'tidak aktif'])->default("aktif");
             $table->foreignId('kartu_keluarga_id')->nullable()->constrained("kartu_keluargas")->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ use App\Models\Penduduk;
 use App\Models\Kelahiran;
 use App\Policies\KartuKeluargaPolicy;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KematianController;
 use App\Http\Controllers\PendudukController;
@@ -19,21 +20,34 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-// Penduduk
-Route::resource('/penduduk', PendudukController::class)->middleware('auth');
+// Manage User
+Route::get('/profile', [UserController::class, 'show'])->middleware('auth');
 
+// Penduduk
+Route::resource('/penduduk', PendudukController::class)->middleware(['auth', 'isAdmin']);
 // Data Kartu Keluarga
-Route::resource('/kartu-keluarga', KartuKeluargaController::class)->middleware('auth');
-Route::post('/kartu-keluarga/pendudukTambah', [KartuKeluargaController::class, 'tambahPenduduk'])->middleware('auth');
-Route::post('/kartu-keluarga/pendudukTambahBaru', [KartuKeluargaController::class, 'tambahPendudukBaru'])->middleware('auth');
-Route::put('/kartu-keluarga/updatePendudukKk/{penduduk}', [KartuKeluargaController::class, 'updatePendudukKk'])->middleware('auth');
-Route::delete('/kartu-keluarga/penduduk/{penduduk}', [KartuKeluargaController::class, 'hapusPendudukKK'])->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/kartu-keluarga', KartuKeluargaController::class)->middleware('isAdmin');
+    Route::post('/kartu-keluarga/pendudukTambah', [KartuKeluargaController::class, 'tambahPenduduk'])->middleware('isAdmin');
+    Route::post('/kartu-keluarga/pendudukTambahBaru', [KartuKeluargaController::class, 'tambahPendudukBaru'])->middleware('isAdmin');
+    Route::put('/kartu-keluarga/updatePendudukKk/{penduduk}', [KartuKeluargaController::class, 'updatePendudukKk'])->middleware('isAdmin');
+    Route::delete('/kartu-keluarga/penduduk/{penduduk}', [KartuKeluargaController::class, 'hapusPendudukKK'])->middleware('isAdmin');
+});
+// Route::resource('/kartu-keluarga', KartuKeluargaController::class)->middleware('auth');
+// Route::post('/kartu-keluarga/pendudukTambah', [KartuKeluargaController::class, 'tambahPenduduk'])->middleware('auth');
+// Route::post('/kartu-keluarga/pendudukTambahBaru', [KartuKeluargaController::class, 'tambahPendudukBaru'])->middleware('auth');
+// Route::put('/kartu-keluarga/updatePendudukKk/{penduduk}', [KartuKeluargaController::class, 'updatePendudukKk'])->middleware('auth');
+// Route::delete('/kartu-keluarga/penduduk/{penduduk}', [KartuKeluargaController::class, 'hapusPendudukKK'])->middleware('auth');
 
 // Data Kelahiran
-Route::resource('/kelahiran', KelahiranController::class)->middleware('auth');
+Route::resource('/kelahiran', KelahiranController::class)->middleware(['auth', 'isAdmin']);
 
 // Data Kematian
-Route::resource('/kematian', KematianController::class)->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/kematian', KematianController::class)->middleware('isAdmin');
+    Route::delete('kematian/{penduduk}/konfirmasi-kematian', [KematianController::class, 'konfirmasiKematian'])->middleware("isAdmin");
+});
+
 
 // Data Perpindahan
 Route::get('/perpindahan', function () {

@@ -21,7 +21,7 @@ class PendudukController extends Controller
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
         return view('penduduk.index', [
-            'penduduks' => Penduduk::with(['kartuKeluarga'])->get()
+            'penduduks' => Penduduk::with(['kartuKeluarga'])->where('status', 'aktif')->get()
         ]);
     }
 

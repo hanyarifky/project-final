@@ -17,22 +17,22 @@
                 <tr>
                     <th>
                         <span class="flex items-center">
-                            NIK
-                        </span>
-                    </th>
-                    <th>
-                        <span class="flex items-center">
                             Nama
                         </span>
                     </th>
                     <th>
                         <span class="flex items-center">
-                            Nomor Kartu Keluarga
+                            Umur
                         </span>
                     </th>
                     <th>
                         <span class="flex items-center">
-                            Jenis Kelamin
+                            Tanggal Kematian
+                        </span>
+                    </th>
+                    <th>
+                        <span class="flex items-center">
+                            Sebab Kematian
                         </span>
                     </th>
                     <th>
@@ -42,6 +42,29 @@
                     </th>
                 </tr>
             </thead>
+            <tbody>
+                @foreach ($kematians as $kematian)
+                    <tr>
+                        <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $kematian->penduduk->nama }}
+                        </td>
+                        <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $kematian->umur }}
+                        </td>
+                        <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $kematian->tanggal_kematian }}
+                        </td>
+                        <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $kematian->sebab_kematian }}
+                        </td>
+                        <td class=" flex font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <a href="/kematian/{{ $kematian->id }}"
+                                class="cursor-pointer pr-3 font-medium text-green-600 dark:text-blue-500 hover:underline">Detail</a>
+                            <a href="/kematian/{{ $kematian->id }}/edit"
+                                class="cursor-pointer pr-3 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="/kematian/{{ $kematian->id }}"
+                                class="cursor-pointer pr-3 font-medium text-red-800 dark:text-blue-500 hover:underline"
+                                data-confirm-delete="true">Hapus</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 </x-layout>
