@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kelahiran extends Model
+class Perpindahan extends Model
 {
+    //
+
     protected $guarded = ['id'];
 
     public function penduduk()

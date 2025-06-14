@@ -10,6 +10,7 @@ use App\Http\Controllers\KematianController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\KelahiranController;
 use App\Http\Controllers\KartuKeluargaController;
+use App\Http\Controllers\PerpindahanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,12 +54,10 @@ Route::resource('/kelahiran', KelahiranController::class)->middleware(['auth', '
 
 // Data Kematian
 Route::middleware(['auth'])->group(function () {
-    Route::resource('/kematian', KematianController::class)->middleware('isAdmin');
+    Route::resource('/kematian', KematianController::class)->middleware(['auth', 'isAdmin']);
     Route::delete('kematian/{penduduk}/konfirmasi-kematian', [KematianController::class, 'konfirmasiKematian'])->middleware("isAdmin");
 });
 
 
 // Data Perpindahan
-Route::get('/perpindahan', function () {
-    return view('perpindahan.index');
-});
+Route::resource('/perpindahan', PerpindahanController::class)->middleware(['auth', 'isAdmin']);

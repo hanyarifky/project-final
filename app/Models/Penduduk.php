@@ -24,4 +24,9 @@ class Penduduk extends Model
     {
         return $this->hasOne(Kematian::class);
     }
+
+    public function perpindahan()
+    {
+        return $this->hasOne(Perpindahan::class);
+    }
 }
