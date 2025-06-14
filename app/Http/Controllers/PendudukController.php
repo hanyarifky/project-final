@@ -48,7 +48,7 @@ class PendudukController extends Controller
         $validate = $request->validate(
             [
                 'nama' => "required|string",
-                'nik' => "required|string|size:16",
+                'nik' => "required|string|size:16|unique:penduduks,nik",
                 'jenis_kelamin' => "required|in:laki-laki,perempuan",
                 'tempat_lahir' => "required|string",
                 'tanggal_lahir' => "required|date",
@@ -127,7 +127,7 @@ class PendudukController extends Controller
             ];
 
         if ($request->nik != $penduduk->nik) {
-            $rulesData['nik'] = "required|string|size:16";
+            $rulesData['nik'] = "required|string|size:16|unique:penduduks,nik";
         }
 
         $validateData = $request->validate($rulesData);

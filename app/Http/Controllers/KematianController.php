@@ -137,7 +137,7 @@ class KematianController extends Controller
 
         try {
 
-            Kematian::where('penduduk_id', $validateData['penduduk_id'])->update($validateData);
+            Kematian::where('penduduk_id', $kematian->penduduk->id)->update($validateData);
 
             alert()->success('Update Sukses', 'Berhasil Mengupdate Data');
             return redirect('/kematian');

@@ -22,6 +22,15 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 // Manage User
 Route::get('/profile', [UserController::class, 'show'])->middleware('auth');
+Route::get('/kelola-staff', [UserController::class, 'index'])->middleware(['auth', 'isAdmin']);
+Route::get('/kelola-staff/tambah-staff', [UserController::class, 'create'])->middleware(['auth', 'isAdmin']);
+Route::post('/kelola-staff/tambah-staff', [UserController::class, 'store'])->middleware(['auth', 'isAdmin']);
+Route::get('/kelola-staff/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'isAdmin']);
+Route::put('/kelola-staff/{user}/', [UserController::class, 'update'])->middleware(['auth', 'isAdmin']);
+Route::delete('/kelola-staff/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'isAdmin']);
+
+Route::get('kelola-staff/ganti-password/{user}', [UserController::class, 'halamanGantiPassword'])->middleware(['auth', 'isAdmin']);
+Route::put('kelola-staff/ganti-password/{user}', [UserController::class, 'gantiPassword'])->middleware(['auth', 'isAdmin']);
 
 // Penduduk
 Route::resource('/penduduk', PendudukController::class)->middleware(['auth', 'isAdmin']);
