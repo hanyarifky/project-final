@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CetakController;
 use App\Models\Penduduk;
 use App\Models\Kelahiran;
 use App\Policies\KartuKeluargaPolicy;
@@ -57,7 +58,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/kematian', KematianController::class)->middleware(['auth', 'isAdmin']);
     Route::delete('kematian/{penduduk}/konfirmasi-kematian', [KematianController::class, 'konfirmasiKematian'])->middleware("isAdmin");
 });
-
-
 // Data Perpindahan
 Route::resource('/perpindahan', PerpindahanController::class)->middleware(['auth', 'isAdmin']);
+
+Route::prefix('laporan')->group(function () {
+    Route::get('/penduduk', [CetakController::class, 'penduduk']);
+    Route::get('/cetak-penduduk', [CetakController::class, 'cetakPenduduk']);
+    Route::get('/tester', function () {
+        return view('laporan.pdf.penduduk-pdf', ["penduduks" => Penduduk::with(['kartuKeluarga'])->get()]);
+    });
+});
