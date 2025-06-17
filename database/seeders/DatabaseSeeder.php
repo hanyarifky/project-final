@@ -43,6 +43,6 @@ class DatabaseSeeder extends Seeder
         // Penduduk::create([
         //     nik
         // ]);
-        // KartuKeluarga::factory(2)->create();
+        KartuKeluarga::factory(2)->create();
     }
 }

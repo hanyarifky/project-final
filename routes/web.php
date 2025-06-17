@@ -12,6 +12,7 @@ use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\KelahiranController;
 use App\Http\Controllers\KartuKeluargaController;
 use App\Http\Controllers\PerpindahanController;
+use App\Models\KartuKeluarga;
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,9 +63,17 @@ Route::middleware(['auth'])->group(function () {
 Route::resource('/perpindahan', PerpindahanController::class)->middleware(['auth', 'isAdmin']);
 
 Route::prefix('laporan')->group(function () {
-    Route::get('/penduduk', [CetakController::class, 'penduduk']);
+    Route::get('/penduduk', [CetakController::class, 'penduduk'])->name('laporan.penduduk');
+    Route::get('/kartu-keluarga', [CetakController::class, 'kartuKeluarga'])->name('laporan.kartu-keluarga');
+    Route::get('/kelahiran', [CetakController::class, 'kelahiran'])->name('laporan.kelahiran');
+    Route::get('/kematian', [CetakController::class, 'kematian'])->name('laporan.kematian');
+    Route::get('/perpindahan', [CetakController::class, 'perpindahan'])->name('laporan.perpindahan');
     Route::get('/cetak-penduduk', [CetakController::class, 'cetakPenduduk']);
+    Route::get('/cetak-kartu-keluarga', [CetakController::class, 'cetakKartuKeluarga']);
+    Route::get('/cetak-kelahiran', [CetakController::class, 'cetakKelahiran']);
+    Route::get('/cetak-kematian', [CetakController::class, 'cetakKematian']);
+    Route::get('/cetak-perpindahan', [CetakController::class, 'cetakPerpindahan']);
     Route::get('/tester', function () {
-        return view('laporan.pdf.penduduk-pdf', ["penduduks" => Penduduk::with(['kartuKeluarga'])->get()]);
+        return view('laporan.pdf.kartu-keluarga-pdf', ["kartu_keluargas" => KartuKeluarga::all()]);
     });
 });
