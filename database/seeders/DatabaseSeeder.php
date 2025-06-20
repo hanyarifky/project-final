@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Penduduk::factory(100)->create();
+        Penduduk::factory(5)->create();
         // Penduduk::create([
         //     nik
         // ]);

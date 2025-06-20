@@ -1,20 +1,40 @@
 <?php
 
-use App\Http\Controllers\CetakController;
+use App\Models\Kematian;
 use App\Models\Penduduk;
 use App\Models\Kelahiran;
+use App\Models\Perpindahan;
+use App\Models\KartuKeluarga;
 use App\Policies\KartuKeluargaPolicy;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CetakController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KematianController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\KelahiranController;
-use App\Http\Controllers\KartuKeluargaController;
 use App\Http\Controllers\PerpindahanController;
-use App\Models\KartuKeluarga;
+use App\Http\Controllers\KartuKeluargaController;
 
 Route::get('/', function () {
+    $totalPenduduk = Penduduk::count();
+    $totalKartuKeluarga = KartuKeluarga::count();
+    $totalPerpindahan = Perpindahan::count();
+    $totalKematian = Kematian::count();
+    $totalKelahiran = Kelahiran::count();
+    $jumlahLakiLaki = Penduduk::where('jenis_kelamin', 'laki-laki')->count();
+    $jumlahPerempuan = Penduduk::where('jenis_kelamin', 'perempuan')->count();
+
+    return view('welcome', compact(
+        'totalPenduduk',
+        'totalKartuKeluarga',
+        'totalPerpindahan',
+        'totalKematian',
+        'totalKelahiran',
+        'jumlahLakiLaki',
+        'jumlahPerempuan',
+    ));
+
     return view('welcome');
 })->name('main')->middleware('auth');
 
@@ -55,8 +75,8 @@ Route::middleware(['auth'])->group(function () {
 Route::resource('/kelahiran', KelahiranController::class)->middleware(['auth', 'isAdmin']);
 
 // Data Kematian
-Route::middleware(['auth'])->group(function () {
-    Route::resource('/kematian', KematianController::class)->middleware(['auth', 'isAdmin']);
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::resource('/kematian', KematianController::class);
     Route::delete('kematian/{penduduk}/konfirmasi-kematian', [KematianController::class, 'konfirmasiKematian'])->middleware("isAdmin");
 });
 // Data Perpindahan
@@ -68,6 +88,11 @@ Route::prefix('laporan')->group(function () {
     Route::get('/kelahiran', [CetakController::class, 'kelahiran'])->name('laporan.kelahiran');
     Route::get('/kematian', [CetakController::class, 'kematian'])->name('laporan.kematian');
     Route::get('/perpindahan', [CetakController::class, 'perpindahan'])->name('laporan.perpindahan');
+    Route::get('/penduduk/{penduduk}', [CetakController::class, 'detailPenduduk'])->name('laporan.detail-penduduk');
+    Route::get('/kartu-keluarga/{kartuKeluarga}', [CetakController::class, 'detailKK'])->name('laporan.detail-kartu-keluarga');
+    Route::get('/kelahiran/{kelahiran}', [CetakController::class, 'detailKelahiran'])->name('laporan.detail-kelahiran');
+    Route::get('/kematian/{kematian}', [CetakController::class, 'detailKematian'])->name('laporan.detail-kematian');
+    Route::get('/perpindahan/{perpindahan}', [CetakController::class, 'detailPerpindahan'])->name('laporan.detail-perpindahan');
     Route::get('/cetak-penduduk', [CetakController::class, 'cetakPenduduk']);
     Route::get('/cetak-kartu-keluarga', [CetakController::class, 'cetakKartuKeluarga']);
     Route::get('/cetak-kelahiran', [CetakController::class, 'cetakKelahiran']);

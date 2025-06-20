@@ -133,7 +133,7 @@
                             {{ $penduduk->tempat_lahir }}
                         </td>
                         <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $penduduk->tanggal_lahir }}
+                            {{ \Carbon\Carbon::parse($penduduk->tanggal_lahir)->format('d-m-Y') }}
                         </td>
                         <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $penduduk->status_di_keluarga }}
@@ -239,7 +239,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
                                 Lahir</label>
 
-                            <div class="relative max-w-sm">
+                            <div class="relative">
                                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -270,17 +270,26 @@
                     "
                                 placeholder="" required />
                         </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="visitors"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama
-                            </label>
-                            <input name="agama" type="text" id="visitors" value="{{ old('agama') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
-                    @error('agama') 
-                                bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500
-                    @enderror
-                    "
-                                placeholder="" required />
+                        <div>
+                            <label for="agama"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
+                            <select name="agama" id="agama" required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white @error('agama') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 @enderror">
+                                <option value="islam" {{ old('agama') == 'islam' ? 'selected' : '' }}>Islam</option>
+                                <option value="kristen" {{ old('agama') == 'kristen' ? 'selected' : '' }}>Kristen
+                                </option>
+                                <option value="hindu" {{ old('agama') == 'hindu' ? 'selected' : '' }}>Hindu</option>
+                                <option value="budha" {{ old('agama') == 'budha' ? 'selected' : '' }}>Budha</option>
+                                <option value="katholik" {{ old('agama') == 'katholik' ? 'selected' : '' }}>Katholik
+                                </option>
+                                <option value="konghucu" {{ old('agama') == 'konghucu' ? 'selected' : '' }}>Konghucu
+                                </option>
+                                <option value="lainnya" {{ old('agama') == 'lainnya' ? 'selected' : '' }}>Lainnya
+                                </option>
+                            </select>
+                            @error('agama')
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-span-2 sm:col-span-1">
                             <label for="countries"
@@ -314,7 +323,7 @@
                             <div>
                                 <label for="status_di_keluarga"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
-                                    Perkawinan</label>
+                                    di Keluarga</label>
                                 <select name="status_di_keluarga" id="status_di_keluarga"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
                                     @error('status_di_keluarga')
@@ -489,9 +498,10 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form class="p-4 md:p-5" action="/kartu-keluarga/updatePendudukKk/{{ $penduduk->id }}" method="POST">
+                    <form class="p-4 md:p-5" action="/kartu-keluarga/updatePendudukKk/{{ $penduduk->id }}"
+                        method="POST">
                         @csrf
-                        @method("PUT")
+                        @method('PUT')
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="nik"
@@ -504,7 +514,7 @@
                                     bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500
                                 @enderror">
                                     <option value="{{ $penduduk->id }}" selected>
-                                        {{ $penduduk->nama }}    
+                                        {{ $penduduk->nama }}
                                     </option>
                                 </select>
                                 @error('id')
@@ -525,13 +535,15 @@
                                     @enderror">
                                         <option selected>--Pilih--</option>
                                         <option value="ayah"
-                                            {{ old('status_di_keluarga', $penduduk->status_di_keluarga) == 'ayah' ? 'selected' : '' }}>Ayah
+                                            {{ old('status_di_keluarga', $penduduk->status_di_keluarga) == 'ayah' ? 'selected' : '' }}>
+                                            Ayah
                                         </option>
                                         <option value="ibu"
                                             {{ old('status_di_keluarga', $penduduk->status_di_keluarga) == 'ibu' ? 'selected' : '' }}>
                                             Ibu</option>
                                         <option value="anak"
-                                            {{ old('status_di_keluarga', $penduduk->status_di_keluarga) == 'anak' ? 'selected' : '' }}>Anak</option>
+                                            {{ old('status_di_keluarga', $penduduk->status_di_keluarga) == 'anak' ? 'selected' : '' }}>
+                                            Anak</option>
                                     </select>
                                     @error('status_di_keluarga')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span

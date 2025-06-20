@@ -101,7 +101,14 @@ class KelahiranController extends Controller
      */
     public function show(Kelahiran $kelahiran)
     {
-        //
+        $kelahiran->load("penduduk");
+
+        return view(
+            'kelahiran.show',
+            [
+                "kelahiran" => $kelahiran
+            ]
+        );
     }
 
     /**

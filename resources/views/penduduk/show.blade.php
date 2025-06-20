@@ -34,7 +34,7 @@
             </div>
             <div class="border border-b-3 p-2">
                 <p class="text-sm underline font-medium text-gray-900 dark:text-white">Tanggal Lahir</p>
-                <p class="dark:text-white">{{ $penduduk->tanggal_lahir }}</p>
+                <p class="dark:text-white">{{ \Carbon\Carbon::parse($penduduk->tanggal_lahir)->locale('id')->translatedFormat('l, d-m-Y') }}</p>
             </div>
             <div class="border border-b-3 p-2">
                 <p class="text-sm underline font-medium text-gray-900 dark:text-white">Alamat</p>
@@ -42,7 +42,7 @@
             </div>
             <div class="border border-b-3 p-2">
                 <p class="text-sm underline font-medium text-gray-900 dark:text-white">Agama</p>
-                <p class="dark:text-white">{{ $penduduk->agama }}</p>
+                <p class="dark:text-white">{{ ucfirst($penduduk->agama) }}</p>
             </div>
             <div class="border border-b-3 p-2">
                 <p class="text-sm underline font-medium text-gray-900 dark:text-white">Status Perkawinan</p>

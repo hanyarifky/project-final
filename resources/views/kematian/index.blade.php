@@ -49,9 +49,9 @@
                         </td>
                         <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $kematian->umur }}
                         </td>
-                        <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $kematian->tanggal_kematian }}
+                        <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ \Carbon\Carbon::parse($kematian->tanggal_kematian)->locale('id')->translatedFormat('l, d F Y') }}
                         </td>
-                        <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $kematian->sebab_kematian }}
+                        <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ Str::ucfirst($kematian->sebab_kematian) }}
                         </td>
                         <td class=" flex font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <a href="/kematian/{{ $kematian->id }}"

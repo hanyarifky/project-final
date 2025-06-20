@@ -34,7 +34,7 @@
             </div>
             <div class="border border-b-3 p-2">
                 <p class="text-sm underline font-medium text-gray-900 dark:text-white">Tanggal Kematian</p>
-                <p class="dark:text-white">{{ $kematian->tanggal_kematian }}</p>
+                <p class="dark:text-white">{{ \Carbon\Carbon::parse($kematian->tanggal_kematian)->locale('id')->translatedFormat('l, d F Y') }}</p>
             </div>
             <div class="border border-b-3 p-2">
                 <p class="text-sm underline font-medium text-gray-900 dark:text-white">Umur</p>

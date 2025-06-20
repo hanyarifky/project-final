@@ -64,7 +64,7 @@
                         <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ ucfirst($perpindahan->status_perpindahan) }}</td>
                         <td class=" flex font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <a href="/perpindahan/{{ $perpindahan->id }}"
+                            <a href="{{ route('laporan.detail-perpindahan', $perpindahan->id) }}"
                                 class="cursor-pointer pr-3 font-medium text-green-600 dark:text-blue-500 hover:underline">Detail</a>
                             
                         </td>

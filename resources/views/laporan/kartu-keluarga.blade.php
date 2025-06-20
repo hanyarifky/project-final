@@ -56,7 +56,7 @@
                         <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $kk->rw }}/{{ $kk->rt }}</td>
                         <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <a href="/kartu-keluarga/{{ $kk->id }}"
+                        <a href="{{ route('laporan.detail-kartu-keluarga', $kk->id) }}"
                                 class="pr-3 font-medium text-green-600 dark:text-blue-500 hover:underline">Detail</a>
                         </td>
                     </tr>

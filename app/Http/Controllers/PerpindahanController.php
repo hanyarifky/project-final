@@ -78,7 +78,14 @@ class PerpindahanController extends Controller
      */
     public function show(Perpindahan $perpindahan)
     {
-        //
+        $perpindahan->load("penduduk");
+
+        return view(
+            'perpindahan.show',
+            [
+                "perpindahan" => $perpindahan
+            ]
+        );
     }
 
     /**

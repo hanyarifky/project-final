@@ -68,7 +68,7 @@
                         <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ ucfirst($kelahiran->berat_bayi) }}</td>
                         <td class=" flex font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <a href="/kelahiran/{{ $kelahiran->id }}"
+                            <a href="{{ route('laporan.detail-kelahiran', $kelahiran->id) }}"
                                 class="cursor-pointer pr-3 font-medium text-green-600 dark:text-blue-500 hover:underline">Detail</a>
                         </td>
                     </tr>

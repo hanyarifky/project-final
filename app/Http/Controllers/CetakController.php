@@ -82,4 +82,65 @@ class CetakController extends Controller
         $pdf->setOption('isPhpEnabled', true);
         return $pdf->setPaper('A4', 'landscape')->stream("laporan-perpindahan.pdf");
     }
+
+    public function detailPenduduk(Penduduk $penduduk)
+    {
+        $penduduk->load("kartuKeluarga");
+
+        return view(
+            'laporan.detail.penduduk-detail',
+            [
+                'penduduk' => $penduduk,
+            ]
+        );
+    }
+
+    public function detailKK(KartuKeluarga $kartuKeluarga)
+    {
+        $penduduk = Penduduk::with('kartuKeluarga')->get();
+        $data_penduduk_sesuai_kk = $penduduk->where('kartu_keluarga_id', $kartuKeluarga->id);
+        return view(
+            'laporan.detail.kartu-keluarga-detail',
+            [
+                'kartuKeluarga' => $kartuKeluarga,
+                'penduduk_kk' => $data_penduduk_sesuai_kk
+            ]
+        );
+    }
+
+    public function detailKelahiran(Kelahiran $kelahiran)
+    {
+        $kelahiran->load("penduduk");
+
+        return view(
+            'laporan.detail.kelahiran-detail',
+            [
+                "kelahiran" => $kelahiran
+            ]
+        );
+    }
+
+    public function detailKematian(Kematian $kematian)
+    {
+        $kematian->load("penduduk");
+
+        return view(
+            'laporan.detail.kematian-detail',
+            [
+                "kematian" => $kematian
+            ]
+        );
+    }
+
+    public function detailPerpindahan(Perpindahan $perpindahan)
+    {
+        $perpindahan->load("penduduk");
+
+        return view(
+            'laporan.detail.perpindahan-detail',
+            [
+                "perpindahan" => $perpindahan
+            ]
+        );
+    }
 }

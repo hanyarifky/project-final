@@ -63,7 +63,7 @@
                         <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $kematian->sebab_kematian }}
                         </td>
                         <td class=" flex font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <a href="/kematian/{{ $kematian->id }}"
+                            <a href="{{ route('laporan.detail-kematian', $kematian->id) }}}}"
                                 class="cursor-pointer pr-3 font-medium text-green-600 dark:text-blue-500 hover:underline">Detail</a>
                         </td>
                     </tr>

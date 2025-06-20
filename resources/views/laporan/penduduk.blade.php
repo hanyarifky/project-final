@@ -66,7 +66,7 @@
                         <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ ucfirst($penduduk->jenis_kelamin) }}</td>
                         <td class=" flex font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <a href="/penduduk/{{ $penduduk->id }}"
+                            <a href="/laporan/penduduk/{{ $penduduk->id }}"
                                 class="cursor-pointer pr-3 font-medium text-green-600 dark:text-blue-500 hover:underline">Detail</a>
                         </td>
                     </tr>

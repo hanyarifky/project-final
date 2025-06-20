@@ -20,13 +20,18 @@
     @else
     @endif
 
+    <style></style>
+
 </head>
 
-<body class="">
+<body>
     @include('sweetalert::alert')
 
-    <section class="bg-gray-50 dark:bg-gray-900">
+    <section style="background-image: url('{{ asset('images/bg-login.jpg') }}'); background-size: cover; background-position: center; height: 100vh;">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+             <h2 class="text-2xl sm:text-3xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 mb-6">
+                Selamat datang di website
+            </h2>
             <div
                 class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -37,7 +42,7 @@
                     </a>
                     <h1
                         class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        Login Aplikasi
+                        Login Website
                     </h1>
                     <form class="space-y-4 md:space-y-6" action="/login" method="POST">
                         @csrf
@@ -71,10 +76,6 @@
                         </div>
                         <button type="submit"
                             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Masuk</button>
-                        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Don’t have an account yet? <a href="#"
-                                class="font-medium text-primary-600 hover:underline dark:text-primary-500">Masuk</a>
-                        </p>
                     </form>
                 </div>
             </div>

@@ -124,16 +124,30 @@
             <!-- Agama -->
             <div>
                 <label for="agama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
-                <input name="agama" type="text" id="agama"
-                    value="{{ old('agama', $kelahiran->penduduk->agama) }}"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
-                    @error('agama') 
-                        bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500
-                    @enderror"
-                    placeholder="" required />
+                <select name="agama" id="agama" required
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white @error('agama') bg-red-50 border border-red-500 text-red-900 placeholder-red-700 @enderror">
+                    <option value="islam" {{ old('agama', $kelahiran->penduduk->agama) == 'islam' ? 'selected' : '' }}>Islam
+                    </option>
+                    <option value="kristen" {{ old('agama', $kelahiran->penduduk->agama) == 'kristen' ? 'selected' : '' }}>Kristen
+                    </option>
+                    <option value="hindu" {{ old('agama', $kelahiran->penduduk->agama) == 'hindu' ? 'selected' : '' }}>Hindu
+                    </option>
+                    <option value="budha" {{ old('agama', $kelahiran->penduduk->agama) == 'budha' ? 'selected' : '' }}>Budha
+                    </option>
+                    <option value="katholik" {{ old('agama', $kelahiran->penduduk->agama) == 'katholik' ? 'selected' : '' }}>
+                        Katholik</option>
+                    <option value="konghucu" {{ old('agama', $kelahiran->penduduk->agama) == 'konghucu' ? 'selected' : '' }}>
+                        Konghucu</option>
+                    <option value="lainnya" {{ old('agama', $kelahiran->penduduk->agama) == 'lainnya' ? 'selected' : '' }}>Lainnya
+                    </option>
+                </select>
+                @error('agama')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                @enderror
             </div>
-    
-            <!-- Berat dan Panjang Bayi--> 
+
+
+            <!-- Berat dan Panjang Bayi-->
             <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <!-- Berat Bayi -->
                 <div>
@@ -184,7 +198,7 @@
                     @foreach ($data_kk as $kk)
                         <option value="{{ $kk->id }}"
                             {{ old('kartu_keluarga_id', $kelahiran->penduduk->kartu_keluarga_id) == $kk->id ? 'selected' : '' }}>
-                            {{ $kk->nomor_kartu_keluarga }} - {{ $kk->nama_kepala_keluarga }}</option>  
+                            {{ $kk->nomor_kartu_keluarga }} - {{ $kk->nama_kepala_keluarga }}</option>
                     @endforeach
                 </select>
             </div>
